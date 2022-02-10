@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+// import "./index.css";
 import HeaderNav from "./HeaderNav";
-import CobaGrid from "./CobaGrid"
-
+import Coba from "./Coba";
 
 ReactDOM.render(
   <React.StrictMode>
-    <HeaderNav />
-    {/* <CobaGrid /> */}
+    {/* <HeaderNav /> */}
+    <Coba />
   </React.StrictMode>,
   document.getElementById("root")
 );

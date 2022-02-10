@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { MoreHorizontal } from "react-feather";
-import { Grid, Paper } from "@mui/material";
-import { Box } from "@mui/material";
-import { styled } from "@mui/material";
 import Card from "../Card/Card";
+import CardDone from "../Card/CardDone";
 import Dropdown from "../Dropdown/Dropdown";
 import Editable from "../Editabled/Editable";
 
@@ -17,7 +15,7 @@ function Board(props) {
       <div className="board_header">
         <p className="board_header_title">
           {props.board?.title}
-          <span>{props.board?.cards?.length || 0}</span>
+          {/* <span>{props.board?.cards?.length || 0}</span> */}
         </p>
         <div
           className="board_header_title_more"
@@ -34,43 +32,54 @@ function Board(props) {
           )}
         </div>
       </div>
+
       <div className="board_cards custom-scroll">
-        <Grid container spacing={2} wrap="nowrap">
-          <Grid item xs>
-            {props.board?.cards?.map((item) => (
-              <Card
-                key={item.id}
-                card={item}
-                boardId={props.board.id}
-                removeCard={props.removeCard}
-                dragEntered={props.dragEntered}
-                dragEnded={props.dragEnded}
-                updateCard={props.updateCard}
-              />
-            ))}
-          </Grid>
-          <Grid item xs>
-            {props.board?.cards?.map((item) => (
-              <Card
-                key={item.id}
-                card={item}
-                boardId={props.board.id}
-                removeCard={props.removeCard}
-                dragEntered={props.dragEntered}
-                dragEnded={props.dragEnded}
-                updateCard={props.updateCard}
-              />
-            ))}
-          </Grid>
-          
-        </Grid>
+        <table className="table_cards">
+          <thead>
+            <tr>
+              <th> Inprogress </th>
+              <th className="thdone"> Done </th>
+            </tr>
+          </thead>
+          <tbody className="tbody_cards">
+            <tr>
+              <td className="td_cards">
+                {props.board?.cards?.map((item) => (
+                  <Card
+                    key={item.id}
+                    card={item}
+                    boardId={props.board.id}
+                    removeCard={props.removeCard}
+                    dragEntered={props.dragEntered}
+                    dragEnded={props.dragEnded}
+                    updateCard={props.updateCard}
+                  />
+                ))}
+              </td>
+              <td>
+                {props.board?.cards?.map((item) => (
+                  <CardDone
+                    key={item.id}
+                    card={item}
+                    boardId={props.board.id}
+                    removeCard={props.removeCard}
+                    dragEntered={props.dragEntered}
+                    dragEnded={props.dragEnded}
+                    updateCard={props.updateCard}
+                  />
+                ))}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
         <Editable
-            text="+ Tambah Sub Task"
-            placeholder="Enter Card Title"
-            displayClass="board_add-card"
-            editClass="board_add-card_edit"
-            onSubmit={(value) => props.addCard(props.board?.id, value)}
-          />
+          text="+ Tambah Sub Task"
+          placeholder="Enter Card Title"
+          displayClass="board_add-card"
+          editClass="board_add-card_edit"
+          onSubmit={(value) => props.addCard(props.board?.id, value)}
+        />
       </div>
     </div>
   );

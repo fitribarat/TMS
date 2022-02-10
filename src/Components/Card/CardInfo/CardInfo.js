@@ -8,6 +8,7 @@ import {
   Type,
   Paperclip,
   User,
+  Activity,
   X,
 } from "react-feather";
 
@@ -17,6 +18,8 @@ import Editable from "../../Editabled/Editable";
 import "./CardInfo.css";
 import DropFile from "./DropFile";
 import DropdownUser from "./DropdownUser";
+import UserTimeline from "./UserTimeline";
+import { Paper } from "@mui/material";
 
 function CardInfo(props) {
   const colors = [
@@ -251,6 +254,14 @@ function CardInfo(props) {
             <p>Attachment</p>
           </div>
           <DropFile />
+        </div>
+        <hr />
+        <div className="cardinfo_box">
+          <div className="cardinfo_box_title">
+            <Activity />
+            <p>User Timeline</p>
+          </div>
+          <UserTimeline />
         </div>
       </div>
     </Modal>
